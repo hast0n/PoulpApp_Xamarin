@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<xf:BottomBarPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:xf="clr-namespace:BottomBar.XamarinForms;assembly=BottomBar.XamarinForms"
+             mc:Ignorable="d"
+             x:Class="PoulpApp.MainPage">
+
+    <ContentPage Title="Favorites" 
+                 IconImageSource="ic_favorites.png">
+        <Grid>
+
+        </Grid>
+    </ContentPage>
+
+    <ContentPage Title="Friends"
+                 IconImageSource="ic_friends.png">
+        
+    </ContentPage>
+    
+    <ContentPage Title="Nearby"
+                 IconImageSource="ic_nearby.png">
+        
+    </ContentPage>
+
+</xf:BottomBarPage>

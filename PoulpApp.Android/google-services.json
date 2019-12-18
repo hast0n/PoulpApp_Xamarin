@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "154307917586",
+    "firebase_url": "https://poulpapp.firebaseio.com",
+    "project_id": "poulpapp",
+    "storage_bucket": "poulpapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:154307917586:android:9cc57794e0bde7e7ef25cb",
+        "android_client_info": {
+          "package_name": "com.ensc.poulpapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "154307917586-0ehdaf5dblreni73b7371k0l0lllfvel.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ensc.poulpapp",
+            "certificate_hash": "c5920493bed4a15ebb78fe4a79a15af465579bf7"
+          }
+        },
+        {
+          "client_id": "154307917586-tl8p9vtpp9moeqiargnid3iq5cvf4tcv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBaMCzTGGwU60PPTrWSlyyxuJiABxoXez4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "154307917586-tl8p9vtpp9moeqiargnid3iq5cvf4tcv.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "154307917586-j2v6ds52ni9kcjrkofd8dmr44rj8ek88.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.ensc.PoulpApp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

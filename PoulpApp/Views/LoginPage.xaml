@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             BackgroundColor="#B74CC2"
+             x:Class="PoulpApp.Views.LoginPage">
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="150" />
+                <RowDefinition Height="50" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="40" />
+                <RowDefinition Height="1" />
+                <RowDefinition Height="1" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="330" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Image Margin="0" Grid.Row="1" Grid.Column="1" Aspect="AspectFit" Source="@drawable/logo">
+            </Image>
+
+            <Label Grid.Row="3" Grid.Column="1" 
+                   FontAttributes="Bold" 
+                   Text="Connexion" 
+                   FontFamily="Arial"
+                   TextColor="#FFFFFF" 
+                   HorizontalOptions="Center" 
+                   FontSize="Title">
+            </Label>
+
+            <Label Grid.Row="4" Grid.Column="1" 
+                   Text="Connectez-vous avec votre compte ensc.fr pour accéder à cette merveille d'application !"
+                   FontSize="Small" 
+                   HorizontalTextAlignment="Center" 
+                   LineBreakMode="WordWrap" 
+                   TextColor="#FFFFFF">
+            </Label>
+
+            <Frame Grid.Column="1" Grid.Row="6" Margin="100, 0"></Frame>
+
+            <Frame Grid.Row="8" Grid.Column="1" CornerRadius="5" BackgroundColor="White" HeightRequest="50" Margin="20" Padding="0" HasShadow="false">
+                <StackLayout Orientation="Horizontal" Padding="5">
+                    <Image HeightRequest="80" Margin="7" Aspect="AspectFill" Source="@drawable/google_signin_logo" />
+                    <Label Text="Connexion avec Google" Padding="20,0,0,0" VerticalOptions="Center" FontSize="18" FontAttributes="Bold" />
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer x:Name="GoogleButton" AutomationId="GoogleButton" Command="{Binding GoogleLoginCommand}" />
+                    </StackLayout.GestureRecognizers>
+                </StackLayout>
+            </Frame>
+            <!--<Button Text="S'inscrire" Grid.Row="4" Grid.Column="1" Command="{Binding Path=SignInCommand}"
+                    BackgroundColor="#A036AB" CornerRadius="14" TextColor="White" FontSize="Large">
+            </Button>-->
+            
+        </Grid>    </ContentPage.Content>
+</ContentPage>
