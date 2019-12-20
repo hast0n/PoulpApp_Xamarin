@@ -1,7 +1,7 @@
 ﻿namespace PoulpApp.Models
 {
 
-    public class GoogleUserProfile
+    public class GoogleUserDetailProfile
     {
         public string Kind { get; set; }
         public string Etag { get; set; }

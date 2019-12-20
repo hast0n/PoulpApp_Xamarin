@@ -4,24 +4,25 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:xf="clr-namespace:BottomBar.XamarinForms;assembly=BottomBar.XamarinForms"
-             mc:Ignorable="d"
-             x:Class="PoulpApp.MainPage">
+             xmlns:local="clr-namespace:PoulpApp.Views;assembly=PoulpApp"
+             mc:Ignorable="d" BackgroundColor="White"
+             x:Class="PoulpApp.Views.MainPage"
+             NavigationPage.HasNavigationBar="False">
 
-    <ContentPage Title="Favorites" 
-                 IconImageSource="ic_favorites.png">
-        <Grid>
+    <local:HomePage Title="Accueil"
+                 IconImageSource="ic_action_home.png"
+                 xf:BottomBarPageExtensions.TabColor="#8C2A97"/>
 
-        </Grid>
-    </ContentPage>
+    <local:CalabarPage Title="Cala'Bar"
+                 IconImageSource="ic_action_cup.png"
+                 xf:BottomBarPageExtensions.TabColor="#8C2A97"/>
 
-    <ContentPage Title="Friends"
-                 IconImageSource="ic_friends.png">
-        
-    </ContentPage>
-    
-    <ContentPage Title="Nearby"
-                 IconImageSource="ic_nearby.png">
-        
-    </ContentPage>
+    <local:FamiliesPage Title="Familles"
+                 IconImageSource="ic_action_crown_.png"
+                 xf:BottomBarPageExtensions.TabColor="#8C2A97"/>
+
+    <local:EventsPage Title="Évènements"
+                 IconImageSource="ic_action_calendar_today.png"
+                 xf:BottomBarPageExtensions.TabColor="#8C2A97"/>
 
 </xf:BottomBarPage>

@@ -1,24 +1,22 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using PoulpApp.Services;
 using PoulpApp.ViewModels;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace PoulpApp.Views
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class LoginPage : ContentPage
     {
-        private MainPageViewModel _viewModel;
+        private LoginPageViewModel _viewModel;
 
-        public LoginPage()
-        {
-            InitializeComponent();
-            BindingContext = _viewModel = new MainPageViewModel();
+		public LoginPage()
+		{
+			InitializeComponent();
+            BindingContext = _viewModel = new LoginPageViewModel();
+
+            MessagingCenter.Subscribe<LoginPageViewModel, User>(this, "EVENT_LAUNCH_MAIN_PAGE", async(sender, user) =>
+            {
+                await DisplayAlert("Email address", user.Email, "OK");
+            });
         }
     }
 }

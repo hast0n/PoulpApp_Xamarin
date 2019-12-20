@@ -35,7 +35,7 @@
                    FontFamily="Arial"
                    TextColor="#FFFFFF" 
                    HorizontalOptions="Center" 
-                   FontSize="Title">
+                   FontSize="27">
             </Label>
 
             <Label Grid.Row="4" Grid.Column="1" 
@@ -57,9 +57,6 @@
                     </StackLayout.GestureRecognizers>
                 </StackLayout>
             </Frame>
-            <!--<Button Text="S'inscrire" Grid.Row="4" Grid.Column="1" Command="{Binding Path=SignInCommand}"
-                    BackgroundColor="#A036AB" CornerRadius="14" TextColor="White" FontSize="Large">
-            </Button>-->
-            
-        </Grid>    </ContentPage.Content>
+        </Grid>
+    </ContentPage.Content>
 </ContentPage>

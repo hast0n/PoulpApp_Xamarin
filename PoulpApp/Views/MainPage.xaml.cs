@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using BottomBar.XamarinForms;
 using Xamarin.Forms;
 
-namespace PoulpApp
+namespace PoulpApp.Views
 {
     // Learn more about making custom code visible in the Xamarin.Forms previewer
     // by visiting https://aka.ms/xamarinforms-previewer

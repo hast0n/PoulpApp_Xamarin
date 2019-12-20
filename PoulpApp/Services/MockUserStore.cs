@@ -14,7 +14,7 @@ namespace PoulpApp.Services
         {
             _users = new List<User>()
             {
-                new User() {Id = Guid.NewGuid().ToString(), Name = "Martin Devreese", Email = "mdevreese@ensc.fr", Password = "salut"},
+                //new User() {Id = Guid.NewGuid().ToString(), Name = "Martin Devreese", Email = "mdevreese@ensc.fr", Password = "salut"},
             };
         }
         public async Task<bool> AddItemAsync(User user)
