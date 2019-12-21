@@ -1,13 +1,9 @@
-﻿using PoulpApp.Models;
+﻿using Newtonsoft.Json;
 using System;
 using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows.Input;
-using Newtonsoft.Json;
 using Xamarin.Auth;
-using Xamarin.Forms;
 using Xamarin.Essentials;
+using Xamarin.Forms;
 
 namespace PoulpApp.ViewModels
 {
@@ -15,14 +11,29 @@ namespace PoulpApp.ViewModels
 	{
         private string storedJson;
 
-        private string debug => SecureStorage.GetAsync(Constants.serviceId).Result;
 
-		public Command GoogleLoginCommand { get; set; }
+        public bool _displayLogInButton;
+        public bool DisplayLogInButton
+        {
+            get => _displayLogInButton;
+			set => SetProperty(ref _displayLogInButton, value);
+		}
+
+        public bool _isLoadingMainPage;
+        public bool IsLoadingMainPage
+        {
+            get => _isLoadingMainPage;
+            set => SetProperty(ref _isLoadingMainPage, value);
+        }
+
+        public Command GoogleLoginCommand { get; set; }
 
 		public LoginPageViewModel()
         {
             GoogleLoginCommand = new Command(() => OnLoginClicked());
-		}
+            IsLoadingMainPage = false;
+            DisplayLogInButton = true;
+        }
 
 		async void OnLoginClicked()
 		{
@@ -72,30 +83,31 @@ namespace PoulpApp.ViewModels
 			}
 
 			User user = null;
+
 			if (e.IsAuthenticated)
-			{
+            {
+                DisplayLogInButton = false;
+                IsLoadingMainPage = true;
 				// If the user is authenticated, request their basic user data from Google
 				// UserInfoUrl = https://www.googleapis.com/oauth2/v2/userinfo
 				var request = new OAuth2Request("GET", new Uri(Constants.UserInfoUrl), null, e.Account);
 				var response = await request.GetResponseAsync();
-				if (response != null)
-				{
-					// Deserialize the data and store it in the account store
-					// The users email address will be used to identify data in SimpleDB
-					string userJson = await response.GetResponseTextAsync();
-					user = JsonConvert.DeserializeObject<User>(userJson);
-				}
 
 				if (storedJson != null)
                 {
                     SecureStorage.Remove(Constants.serviceId);
                 }
 
-                string jsonAccount = e.Account.Serialize();
-
-				await SecureStorage.SetAsync(Constants.serviceId, jsonAccount);
-                MessagingCenter.Send(this, "EVENT_LAUNCH_MAIN_PAGE");
-			}
+				if (response != null)
+				{
+					// Deserialize the data and store it in the account store
+					// The users email address will be used to identify data in SimpleDB
+					string userJson = await response.GetResponseTextAsync();
+					user = JsonConvert.DeserializeObject<User>(userJson);
+                    await SecureStorage.SetAsync(Constants.serviceId, e.Account.Properties["refresh_token"]);
+				    MessagingCenter.Send(this, "EVENT_LAUNCH_MAIN_PAGE", user);
+				}
+            }
 		}
 
 		void OnAuthError(object sender, AuthenticatorErrorEventArgs e)

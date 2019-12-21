@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="PoulpApp.Views.Tools.TopBar">
+    <ContentView.Content>
+        <StackLayout>
+            <Frame HeightRequest="50" Padding="15"
+                   BackgroundColor="Transparent">
+                <Frame CornerRadius="10" Padding="0">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+                        <Label Text="{Binding CurrentUser.Name}"
+                               VerticalOptions="Center" Padding="10,0"
+                               FontSize="Medium"/>
+
+                        <Frame Grid.Column="2" Grid.Row="0" BackgroundColor="Transparent"
+                               CornerRadius="200" Padding="0" Margin="10,6">
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer x:Name="ProfileButton" 
+                                                      AutomationId="ProfileButton" 
+                                                      Command="{Binding AskLogoutCommand}"/>
+                            </Frame.GestureRecognizers>
+                            <Image BackgroundColor="Green" 
+                                   Source="{Binding CurrentUser.Picture}">
+                            </Image>
+                        </Frame>
+
+                    </Grid>
+                </Frame>
+            </Frame>
+        </StackLayout>
+    </ContentView.Content>
+</ContentView>

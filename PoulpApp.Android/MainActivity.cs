@@ -4,7 +4,7 @@ using Android.OS;
 
 namespace PoulpApp.Droid
 {
-    [Activity(Label = "PoulpApp", Icon = "@mipmap/ic_launcher", Theme = "@style/MainTheme", 
+    [Activity(Label = "PoulpApp", Icon = "@mipmap/ic_launcher", Theme = "@style/SplashScreen", 
         MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
@@ -13,9 +13,11 @@ namespace PoulpApp.Droid
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
             
+            base.SetTheme(Resource.Style.MainTheme);
             base.OnCreate(bundle);
 
             global::Xamarin.Forms.Forms.Init(this, bundle);
+            FormsControls.Droid.Main.Init(this);
             global::Xamarin.Essentials.Platform.Init(this, bundle);
             global::Xamarin.Auth.Presenters.XamarinAndroid.AuthenticationConfiguration.Init(this, bundle);
             Xamarin.Auth.CustomTabsConfiguration.CustomTabsClosingMessage = null;

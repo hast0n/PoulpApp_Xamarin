@@ -1,16 +1,4 @@
-﻿//namespace PoulpApp.Models
-//{
-//    public class User
-//    {
-//        public string Name { get; set; }
-//        public string Password { get; set; }
-//        public string Email { get; set; }
-//        public string Id { get; set; }
-//        public bool Type { get; set; }
-//    }
-//}
-
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 
 namespace PoulpApp
 {

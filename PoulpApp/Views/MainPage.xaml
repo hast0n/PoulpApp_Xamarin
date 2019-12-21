@@ -5,9 +5,11 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:xf="clr-namespace:BottomBar.XamarinForms;assembly=BottomBar.XamarinForms"
              xmlns:local="clr-namespace:PoulpApp.Views;assembly=PoulpApp"
-             mc:Ignorable="d" BackgroundColor="White"
+             mc:Ignorable="d" BackgroundColor="#EEEEEE"
              x:Class="PoulpApp.Views.MainPage"
-             NavigationPage.HasNavigationBar="False">
+             NavigationPage.HasNavigationBar="False"
+             BarBackgroundColor="White" 
+             BarTextColor="Gray">
 
     <local:HomePage Title="Accueil"
                  IconImageSource="ic_action_home.png"
@@ -18,7 +20,7 @@
                  xf:BottomBarPageExtensions.TabColor="#8C2A97"/>
 
     <local:FamiliesPage Title="Familles"
-                 IconImageSource="ic_action_crown_.png"
+                 IconImageSource="ic_action_crown.png"
                  xf:BottomBarPageExtensions.TabColor="#8C2A97"/>
 
     <local:EventsPage Title="Évènements"

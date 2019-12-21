@@ -3,9 +3,7 @@
   <item>
     <color android:color="@color/poulpPurple"/>
   </item>
-  <item>
-    <bitmap
-      android:src="@drawable/logo"
-      android:gravity="center"/>
+  <item android:gravity="center">
+    <bitmap android:src="@drawable/splash_logo"/>
   </item>
 </layer-list>

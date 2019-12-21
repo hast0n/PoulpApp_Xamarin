@@ -1,10 +1,8 @@
-﻿using System;
-using System.Runtime.CompilerServices;
-using System.Threading.Tasks;
-using PoulpApp.Services;
+﻿using PoulpApp.Services;
 using PoulpApp.ViewModels;
 using PoulpApp.Views;
-using Xamarin.Essentials;
+using System;
+using FormsControls.Base;
 using Xamarin.Forms;
 
 namespace PoulpApp
@@ -12,25 +10,15 @@ namespace PoulpApp
     public partial class App : Application
     {
         
-        private bool isLoggedIn => !string.IsNullOrEmpty(SecureStorage.GetAsync(Constants.serviceId).Result);
-
         public App()
         {
             DependencyService.Register<MockDataStore>();
             DependencyService.Register<MockUserStore>();
 
-            MessagingCenter.Subscribe<LoginPageViewModel>(this, "EVENT_LAUNCH_MAIN_PAGE", SetMainPageAsRootPage);
-            MessagingCenter.Subscribe<LoginPageViewModel>(this, "EVENT_LAUNCH_LOGIN_PAGE", SetLoginPageAsRootPage);
+            MessagingCenter.Subscribe<LoginPageViewModel, User>(this, "EVENT_LAUNCH_MAIN_PAGE", SetMainPageAsRootPage);
+            MessagingCenter.Subscribe<MainPageViewModel>(this, "EVENT_LAUNCH_LOGIN_PAGE", SetLoginPageAsRootPage);
             
-            if (isLoggedIn) // really bad -> need to check refresh token and get new auth token
-            {
-                SetMainPageAsRootPage(this);
-            }
-            else
-            {
-                SetLoginPageAsRootPage(this);
-            }
-
+            MainPage = new LoginPage();
         }
 
         private void SetLoginPageAsRootPage(object sender)
@@ -38,9 +26,9 @@ namespace PoulpApp
             MainPage = new LoginPage();
         }
 
-        private void SetMainPageAsRootPage(object sender)
+        private void SetMainPageAsRootPage(object sender, User user)
         {
-            MainPage = new NavigationPage(new MainPage());
+            MainPage = new AnimationNavigationPage(new MainPage(user));
         }
 
         protected override void OnStart()
