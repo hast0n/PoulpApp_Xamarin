@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using PoulpApp.Services;
 using PoulpApp.Views;
 using Xamarin.Essentials;
 using Xamarin.Forms;
@@ -11,6 +9,7 @@ namespace PoulpApp.ViewModels
     {
         public User CurrentUser { get; }
         public Command AskLogoutCommand { get; set; }
+        private MessageService MS;
         
         public MainPageViewModel(User user)
         {
@@ -18,16 +17,16 @@ namespace PoulpApp.ViewModels
 
             AskLogoutCommand = new Command(() =>
             {
-                MessagingCenter.Send(this, "ASK_LOGOUT_COMMAND_TRIGGERED");
+                MessagingCenter.Send(new MessageService(), "ASK_LOGOUT_COMMAND_TRIGGERED");
             });
 
-            MessagingCenter.Subscribe<MainPage>(this, "LOGOUT_REQUEST", Logout);
+            MessagingCenter.Subscribe<MessageService>(this, "LOGOUT_REQUEST", Logout);
         }
 
         private void Logout(object sender)
         {
-            SecureStorage.Remove(Constants.serviceId);
-            MessagingCenter.Send(this, "EVENT_LAUNCH_LOGIN_PAGE");
+            SecureStorage.RemoveAll();
+            MessagingCenter.Send(new MessageService(), "EVENT_LAUNCH_LOGIN_PAGE");
         }
     }
 }

@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" BackgroundColor="#992EA5"
+             x:Class="PoulpApp.Views.LoadingPage">
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <ActivityIndicator
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" 
+                IsRunning="True" Grid.Column="0"
+                Color="White" Grid.Row="1"
+                Scale="1.4"/>
+            <Label Text="Chargement..." FontSize="Default" TextColor="White"
+                   HorizontalTextAlignment="Center" Grid.Row="2" Margin="20"
+                   VerticalOptions="Center"></Label>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

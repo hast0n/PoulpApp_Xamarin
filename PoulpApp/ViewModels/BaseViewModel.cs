@@ -10,7 +10,7 @@ namespace PoulpApp.ViewModels
 {
     public class BaseViewModel : INotifyPropertyChanged
     {
-        public IDataStore<Item> DataStore => DependencyService.Get<IDataStore<Item>>();
+        public IDataStore<Beer> DataStore => DependencyService.Get<IDataStore<Beer>>();
 
         bool isBusy = false;
         public bool IsBusy

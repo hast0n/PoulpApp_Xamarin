@@ -2,7 +2,10 @@
 {
     public static class Constants
     {
-        public static string serviceId = "GoogleAccount";
+        public static string serviceId = "GoogleAuthServices";
+        public const string EventLaunchLoginPage = "EVENT_LAUNCH_LOGIN_PAGE";
+        public const string EventLaunchMainPage = "EVENT_LAUNCH_MAIN_PAGE";
+        public static string AuthenticationSuccess = "AUTHENTICATION_SUCCESS";
 
         public static string AppName = "PoulpApp";
 

@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using BottomBar.XamarinForms;
 using FormsControls.Base;
+using PoulpApp.Services;
 using PoulpApp.ViewModels;
 using Xamarin.Forms;
 
@@ -37,14 +38,14 @@ namespace PoulpApp.Views
             InitializeComponent();
             BindingContext = _viewModel = new MainPageViewModel(user);
 
-            MessagingCenter.Subscribe<MainPageViewModel>(this, "ASK_LOGOUT_COMMAND_TRIGGERED", async (sender) =>
+            MessagingCenter.Subscribe<MessageService>(this, "ASK_LOGOUT_COMMAND_TRIGGERED", async (sender) =>
             {
                 bool askLogout = await DisplayAlert("Se déconnecter",
                     "Voulez-vous vous déconnecter du service ?",
                     "Se déconnecter", "Annuler");
                 if (askLogout)
                 {
-                    MessagingCenter.Send(this, "LOGOUT_REQUEST");
+                    MessagingCenter.Send(new MessageService(), "LOGOUT_REQUEST");
                 }
             });
         }
