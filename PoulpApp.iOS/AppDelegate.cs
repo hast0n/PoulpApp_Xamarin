@@ -15,6 +15,7 @@ namespace PoulpApp.iOS
             global::Xamarin.Forms.Forms.Init();
             FormsControls.Touch.Main.Init();
             global::Xamarin.Auth.Presenters.XamarinIOS.AuthenticationConfiguration.Init();
+            Rg.Plugins.Popup.Popup.Init();
 
             LoadApplication(new App());
             return base.FinishedLaunching(app, options);

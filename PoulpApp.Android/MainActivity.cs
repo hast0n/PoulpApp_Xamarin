@@ -19,6 +19,7 @@ namespace PoulpApp.Droid
             global::Xamarin.Forms.Forms.Init(this, bundle);
             FormsControls.Droid.Main.Init(this);
             global::Xamarin.Essentials.Platform.Init(this, bundle);
+            Rg.Plugins.Popup.Popup.Init(this, bundle);
             global::Xamarin.Auth.Presenters.XamarinAndroid.AuthenticationConfiguration.Init(this, bundle);
             Xamarin.Auth.CustomTabsConfiguration.CustomTabsClosingMessage = null;
 
@@ -31,5 +32,18 @@ namespace PoulpApp.Droid
 
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
+
+        public override void OnBackPressed()
+        {
+            if (Rg.Plugins.Popup.Popup.SendBackPressed(base.OnBackPressed))
+            {
+                // Do something if there are some pages in the `PopupStack`
+            }
+            else
+            {
+                // Do something if there are not any pages in the `PopupStack`
+            }
+        }
+
     }
 }

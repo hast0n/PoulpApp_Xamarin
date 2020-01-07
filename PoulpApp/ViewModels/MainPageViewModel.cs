@@ -8,6 +8,7 @@ namespace PoulpApp.ViewModels
     public class MainPageViewModel : BaseViewModel
     {
         public User CurrentUser { get; }
+        public Command ShowProfileCommand { get; set; }
         public Command AskLogoutCommand { get; set; }
         private MessageService MS;
         
@@ -15,18 +16,23 @@ namespace PoulpApp.ViewModels
         {
             CurrentUser = user;
 
+            ShowProfileCommand = new Command(() =>
+            {
+                MessagingCenter.Send(new MessageService(), Constants.EventLaunchProfileView);
+            });
+            
             AskLogoutCommand = new Command(() =>
             {
-                MessagingCenter.Send(new MessageService(), "ASK_LOGOUT_COMMAND_TRIGGERED");
+                MessagingCenter.Send(new MessageService(), Constants.AskLogoutCommandTriggered);
             });
 
-            MessagingCenter.Subscribe<MessageService>(this, "LOGOUT_REQUEST", Logout);
+            MessagingCenter.Subscribe<MessageService>(this, Constants.EventLogoutRequest, Logout);
         }
 
         private void Logout(object sender)
         {
             SecureStorage.RemoveAll();
-            MessagingCenter.Send(new MessageService(), "EVENT_LAUNCH_LOGIN_PAGE");
+            MessagingCenter.Send(new MessageService(), Constants.EventLaunchLoginPage);
         }
     }
 }

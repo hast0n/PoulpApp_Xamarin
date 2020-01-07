@@ -6,4 +6,5 @@
     <color name="colorAccent">#FF4081</color>
     <!--<color name="poulpPurple">#B74CC2</color>-->
     <color name="poulpPurple">#992EA5</color>
+    <color name="main_background">#EEEEEE</color>
 </resources>

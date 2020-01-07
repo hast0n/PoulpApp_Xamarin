@@ -79,15 +79,6 @@
 
             <ActivityIndicator Grid.Row="8" Grid.Column="1" Scale="1.8" Color="White" IsRunning="{Binding IsLoadingMainPage}" />
 
-            <!--<Frame Grid.Row="8" Grid.Column="1" CornerRadius="5" BackgroundColor="White" HeightRequest="50" Margin="20" Padding="0" HasShadow="false">
-                <StackLayout Orientation="Horizontal" Padding="5">
-                    <Image HeightRequest="80" Margin="7" Aspect="AspectFill" Source="@drawable/google_signin_logo" />
-                    <Label Text="Connexion avec Google" Padding="20,0,0,0" VerticalOptions="Center" FontSize="18" FontAttributes="Bold" />
-                    <StackLayout.GestureRecognizers>
-                        <TapGestureRecognizer x:Name="GoogleButton" AutomationId="GoogleButton" Command="{Binding GoogleLoginCommand}" />
-                    </StackLayout.GestureRecognizers>
-                </StackLayout>
-            </Frame>-->
         </Grid>
     </ContentPage.Content>
 </ContentPage>

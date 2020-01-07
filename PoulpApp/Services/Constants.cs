@@ -5,7 +5,12 @@
         public static string serviceId = "GoogleAuthServices";
         public const string EventLaunchLoginPage = "EVENT_LAUNCH_LOGIN_PAGE";
         public const string EventLaunchMainPage = "EVENT_LAUNCH_MAIN_PAGE";
+        public const string EventLaunchProfileView = "EVENT_LAUNCH_PROFILE_VIEW";
+        public const string EventInformNetworkIssues = "EVENT_INFORM_NETWORK_ISSUES";
+        public const string EventLogoutRequest = "LOGOUT_REQUEST";
+        public const string AskLogoutCommandTriggered = "ASK_LOGOUT_COMMAND_TRIGGERED";
         public static string AuthenticationSuccess = "AUTHENTICATION_SUCCESS";
+        public static string IsLoadingUser = "IS_LOADING_USER";
 
         public static string AppName = "PoulpApp";
 

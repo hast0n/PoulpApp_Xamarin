@@ -5,11 +5,9 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:xf="clr-namespace:BottomBar.XamarinForms;assembly=BottomBar.XamarinForms"
              xmlns:local="clr-namespace:PoulpApp.Views;assembly=PoulpApp"
-             mc:Ignorable="d" BackgroundColor="#EEEEEE"
+             mc:Ignorable="d"
              x:Class="PoulpApp.Views.MainPage"
-             NavigationPage.HasNavigationBar="False"
-             BarBackgroundColor="White" 
-             BarTextColor="Gray">
+             NavigationPage.HasNavigationBar="False">
 
     <local:HomePage Title="Accueil"
                  IconImageSource="ic_action_home.png"

@@ -9,7 +9,7 @@
         <StackLayout>
             <Frame HeightRequest="50" Padding="15"
                    BackgroundColor="Transparent">
-                <Frame CornerRadius="10" Padding="0">
+                <Frame CornerRadius="10" Padding="0" x:Name="TopContainer">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
@@ -35,8 +35,8 @@
                                    Source="{Binding CurrentUser.Picture}">
                             </Image>
                         </Frame>
-
                     </Grid>
+
                 </Frame>
             </Frame>
         </StackLayout>

@@ -4,7 +4,7 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:tools="clr-namespace:PoulpApp.Views.Tools;assembly=PoulpApp"
-             mc:Ignorable="d"
+             mc:Ignorable="d" BackgroundColor="#EEEEEE"
              x:Class="PoulpApp.Views.FamiliesPage">
     <ContentPage.Content>
         <StackLayout>

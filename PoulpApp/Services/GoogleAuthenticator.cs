@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Net;
+using System.Net.NetworkInformation;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using Xamarin.Auth;
@@ -45,14 +46,33 @@ namespace PoulpApp.Services
         }
     }
 
+    public class NetworkIssuesException : Exception
+    {
+        public NetworkIssuesException()
+        {
+        }
+
+        public NetworkIssuesException(string message)
+            : base(message)
+        {
+        }
+
+        public NetworkIssuesException(string message, Exception inner)
+            : base(message, inner)
+        {
+        }
+    }
+
     public class GoogleAuthenticator
     {
         public OAuth2Authenticator Auth { get; private set; }
+        private MessageService MS;
 
         public GoogleAuthenticator()
         {
             string clientId = null;
             string redirectUri = null;
+            MS = new MessageService();
 
             switch (Device.RuntimePlatform)
             {
@@ -76,8 +96,6 @@ namespace PoulpApp.Services
                 new Uri(Constants.AccessTokenUrl),
                 null,
                 true);
-
-
         }
 
         public void Authenticate()
@@ -105,6 +123,8 @@ namespace PoulpApp.Services
 
             if (e.IsAuthenticated)
             {
+                MessagingCenter.Send(MS, Constants.IsLoadingUser);
+
                 var request = new OAuth2Request("GET", new Uri(Constants.UserInfoUrl), null, e.Account);
                 var response = await request.GetResponseAsync();
 
@@ -117,7 +137,7 @@ namespace PoulpApp.Services
 
                     await SecureStorage.SetAsync(Constants.serviceId, e.Account.Serialize());
 
-                    MessagingCenter.Send(new MessageService(), Constants.AuthenticationSuccess, user);
+                    MessagingCenter.Send(MS, Constants.AuthenticationSuccess, user);
                 }
             }
         }
@@ -150,7 +170,14 @@ namespace PoulpApp.Services
         public static async Task<Response> AskUserInfoAsync(Account account)
         {
             var request = new OAuth2Request("GET", new Uri(Constants.UserInfoUrl), null, account);
-            return await request.GetResponseAsync();
+            try
+            {
+                return await request.GetResponseAsync();
+            }
+            catch (Exception NetworkIssues)
+            {
+                throw new NetworkIssuesException("No internet connection or permission issues, check network state");
+            }
         }
 
         public async Task<User> VerifyAndGetUserAsync()

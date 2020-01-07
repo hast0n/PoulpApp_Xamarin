@@ -15,20 +15,20 @@ namespace PoulpApp.Views
     // Learn more about making custom code visible in the Xamarin.Forms previewer
     // by visiting https://aka.ms/xamarinforms-previewer
     [DesignTimeVisible(false)]
-    public partial class MainPage : BottomBarPage //, IAnimationPage
+    public partial class MainPage : BottomBarPage, IAnimationPage
     {
         #region Animation
-        //public IPageAnimation PageAnimation { get; } = new FlipPageAnimation { Duration = AnimationDuration.Long, Subtype = AnimationSubtype.FromTop };
+        public IPageAnimation PageAnimation { get; } = new FlipPageAnimation { Duration = AnimationDuration.Long, Subtype = AnimationSubtype.FromTop };
 
-        //public void OnAnimationStarted(bool isPopAnimation)
-        //{
-        //    // Put your code here but leaving empty works just fine
-        //}
+        public void OnAnimationStarted(bool isPopAnimation)
+        {
+            // Put your code here but leaving empty works just fine
+        }
 
-        //public void OnAnimationFinished(bool isPopAnimation)
-        //{
-        //    // Put your code here but leaving empty works just fine
-        //}
+        public void OnAnimationFinished(bool isPopAnimation)
+        {
+            // Put your code here but leaving empty works just fine
+        }
         #endregion
 
         private MainPageViewModel _viewModel;
@@ -38,16 +38,22 @@ namespace PoulpApp.Views
             InitializeComponent();
             BindingContext = _viewModel = new MainPageViewModel(user);
 
-            MessagingCenter.Subscribe<MessageService>(this, "ASK_LOGOUT_COMMAND_TRIGGERED", async (sender) =>
+            MessagingCenter.Subscribe<MessageService>(this,  Constants.AskLogoutCommandTriggered, async (sender) =>
             {
                 bool askLogout = await DisplayAlert("Se déconnecter",
                     "Voulez-vous vous déconnecter du service ?",
                     "Se déconnecter", "Annuler");
                 if (askLogout)
                 {
-                    MessagingCenter.Send(new MessageService(), "LOGOUT_REQUEST");
+                    MessagingCenter.Send(new MessageService(), Constants.EventLogoutRequest);
                 }
             });
+
+            MessagingCenter.Subscribe<MessageService>(this, Constants.EventLaunchProfileView, async (sender) =>
+            {
+                await Navigation.PushModalAsync(new ProfilePage(_viewModel));
+            });
+
         }
     }
 }

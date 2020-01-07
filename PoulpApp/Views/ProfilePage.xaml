@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:helpers="clr-namespace:PoulpApp.Helpers;assembly=PoulpApp"
+             mc:Ignorable="d" BackgroundColor="#EEEEEE"
+             x:Class="PoulpApp.Views.ProfilePage">
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="White" Margin="0, 10, 0, 0">
+            <!--<Frame Grid.Row="0" Grid.Column="1"></Frame>-->
+
+            <Frame Padding="0" CornerRadius="200" BackgroundColor="Wheat"
+                               VerticalOptions="Center" HorizontalOptions="Center">
+            </Frame>
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <Frame Grid.Column="0" Grid.Row="0"
+                       Padding="0" CornerRadius="45" Margin="30, 20, 20, 0"
+                       BackgroundColor="Transparent">
+                    <Image Source="{Binding CurrentUser.Picture}"/>
+                </Frame>
+
+                <StackLayout Orientation="Vertical" Grid.Column="1" Grid.Row="0" VerticalOptions="CenterAndExpand" Margin="0, 20, 30, 0">
+                    <Label Text="{Binding CurrentUser.GivenName}" FontSize="25" LineBreakMode="TailTruncation"/>
+                    <Label Text="{Binding CurrentUser.FamilyName}" FontSize="25" LineBreakMode="TailTruncation"/>
+                </StackLayout>
+            </Grid>
+
+            <Frame BackgroundColor="#EEEEEE" HasShadow="False" BorderColor="Transparent" CornerRadius="0" Margin="0, 20, 0, 4" Padding="20, 7">
+                <Label Text="Paramètres" FontSize="Medium"/>
+            </Frame>
+
+            <Label Text="Notifications" Margin="20, 10" TextColor="Black"/>
+            <Label Text="Vider le cache" Margin="20, 10" TextColor="Black"/>
+
+            <Frame BackgroundColor="#EEEEEE" HasShadow="False" BorderColor="Transparent" CornerRadius="0" Margin="0, 30, 0, 4" Padding="20, 7">
+                <Label Text="Informations" FontSize="Medium"/>
+            </Frame>
+
+            <Label Text="A propos de la Poulp'App" Margin="20, 10" TextColor="Black"/>
+            <Label Text="Conditions Générales d'Utilisation" Margin="20, 10" TextColor="Black"/>
+            <Label Text="Politique de Confidentialité" Margin="20, 10" TextColor="Black"/>
+            <Label Text="Assistance" Margin="20, 10" TextColor="Black"/>
+
+            <Frame BackgroundColor="#EEEEEE" HasShadow="False" BorderColor="Transparent" CornerRadius="0" Margin="0, 30, 0, 4" Padding="20, 7">
+                <Label Text="Autre" FontSize="Medium"/>
+            </Frame>
+
+            <Frame Padding="0" Margin="0, 0, 0, 6" BackgroundColor="Transparent">
+                <Button Text="Déconnexion" FontAttributes="Bold" BackgroundColor="Transparent"
+                            HorizontalOptions="Start" Margin="18, 0" Padding="0" FontSize="Default"
+                            Command="{Binding AskLogoutCommand}"/>
+            </Frame>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

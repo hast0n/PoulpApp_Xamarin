@@ -13,8 +13,8 @@
     <!-- colorPrimary is used for the default action bar background -->
     <item name="colorPrimary">@color/poulpPurple</item>
     <!-- colorPrimaryDark is used for the status bar -->
-    <!--<item name="colorPrimaryDark">@color/poulpPurple</item>-->
-    <!--<item name="android:windowLightStatusBar">true</item>-->
+    <item name="colorPrimaryDark">@color/main_background</item>
+    <item name="android:windowLightStatusBar">true</item>
     <!-- colorAccent is used as the default value for colorControlActivated
          which is used to tint widgets -->
     <item name="android:navigationBarColor">@color/poulpPurple</item>

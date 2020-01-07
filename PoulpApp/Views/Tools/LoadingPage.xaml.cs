@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using AsyncAwaitBestPractices.MVVM;
@@ -21,6 +23,15 @@ namespace PoulpApp.Views
             InitializeComponent();
             VerifyAsyncCommand = new AsyncCommand(ExecuteVerifyAsync, CanExecuteVerify);
             _GoogleAuth = new GoogleAuthenticator();
+
+            MessagingCenter.Subscribe<MessageService>(this, Constants.EventInformNetworkIssues, async (sender) =>
+            {
+                await DisplayAlert("Oops...",
+                    "Il semble que nous ne parvenons pas à joindre l'Internet ! Vérifiez votre connexion et réessayez.",
+                    "Réessayer");
+                await VerifyAsyncCommand.ExecuteAsync();
+            });
+
         }
 
         private bool CanExecuteVerify(object arg)
@@ -36,7 +47,7 @@ namespace PoulpApp.Views
                 User user = await _GoogleAuth.VerifyAndGetUserAsync();
 
                 MessagingCenter.Send(new MessageService(), Constants.EventLaunchMainPage, user);
-            }
+                }
             catch (NoStoredUserException e)
             {
                 MessagingCenter.Send(new MessageService(), Constants.EventLaunchLoginPage);
@@ -44,6 +55,10 @@ namespace PoulpApp.Views
             catch (NotAbleToAuthenticate e)
             {
                 MessagingCenter.Send(new MessageService(), Constants.EventLaunchLoginPage);
+            }
+            catch (NetworkIssuesException)
+            {
+                MessagingCenter.Send(new MessageService(), Constants.EventInformNetworkIssues);
             }
             finally
             {

@@ -3,24 +3,90 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:tools="clr-namespace:PoulpApp.Views.Tools;assembly=PoulpApp"
-             mc:Ignorable="d"
+             xmlns:poulpApp="clr-namespace:PoulpApp;assembly=PoulpApp"
+             xmlns:models="clr-namespace:PoulpApp.Models;assembly=PoulpApp"
+             mc:Ignorable="d" BackgroundColor="#EEEEEE"
              x:Class="PoulpApp.Views.CalabarPage">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Ajouter livraison" Order="Secondary"/>
+        <ToolbarItem Text="Mode édition" Order="Secondary"/>
+    </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout>
-            <tools:TopBar/>
             <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="60"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="30"/>
-                </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
 
+                <Frame x:Name="TopContainer" Grid.Row="0" Grid.ColumnSpan="3" Margin="15" Padding="0">
+                    <Frame.HeightRequest>50</Frame.HeightRequest>
+                    <Frame.BackgroundColor>White</Frame.BackgroundColor>
+                    <Frame.CornerRadius>10</Frame.CornerRadius>
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="Fill">
+                        <SearchBar Placeholder="Rechercher dans le Cala'Bar..." HorizontalOptions="FillAndExpand"/>
+                        <ImageButton Source="ic_more_vert" BackgroundColor="white" 
+                                     CornerRadius="10" Margin="2,2,7,2" 
+                                     x:Name="clickToShowPopup"
+                                     Clicked="ClickToShowPopup_OnClicked"/>
+                    </StackLayout>
+                </Frame>
 
-
+                <ListView Grid.Row="1" Margin="0" Grid.ColumnSpan="3"
+                          ItemsSource="{Binding BeerCollection}"
+                          x:Name="BeerListView"
+                          VerticalOptions="FillAndExpand"
+                          RefreshCommand="{Binding LoadItemsCommand}"
+                          IsPullToRefreshEnabled="true"
+                          IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+                          CachingStrategy="RecycleElementAndDataTemplate"
+                          ItemSelected="OnItemSelected"
+                          HasUnevenRows="True">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Frame BackgroundColor="White" Margin="10, 5" CornerRadius="4" Padding="5" 
+                                       HorizontalOptions="FillAndExpand">
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition />
+                                            <RowDefinition />
+                                            <RowDefinition />
+                                            <RowDefinition />
+                                            <RowDefinition />
+                                            <RowDefinition />
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="130"/>
+                                            <ColumnDefinition />
+                                            <ColumnDefinition />
+                                            <ColumnDefinition />
+                                            <ColumnDefinition />
+                                        </Grid.ColumnDefinitions>
+                                        <!--<Image Grid.Column="0" Grid.Row="0" Grid.RowSpan="6">
+                                            <Image.Source>
+                                                <UriImageSource 
+                                                    Uri="{Binding PosterPath}" 
+                                                    CachingEnabled="True"
+                                                    CacheValidity="5
+                                                    " />
+                                            </Image.Source>
+                                        </Image>-->
+                                        <Label Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="4" Text="{Binding Name}" TextColor="DimGray" FontAttributes="Bold" />
+                                        <Label Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="4" Text="{Binding Name}" TextColor="DimGray" FontAttributes="Bold" />
+                                        <Label Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="4" Text="{Binding Name}" TextColor="DimGray" FontAttributes="Bold" />
+                                        <Label Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="4" Text="{Binding Name}" TextColor="DimGray" FontAttributes="Bold" />
+                                        <Label Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="4" Text="{Binding Name}" TextColor="DimGray" FontAttributes="Bold" />
+                                        <Label Grid.Column="1" Grid.Row="5" Grid.ColumnSpan="4" Text="{Binding Name}" TextColor="DimGray" FontAttributes="Bold" />
+                                    </Grid>
+                                </Frame>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
             </Grid>
         </StackLayout>
     </ContentPage.Content>

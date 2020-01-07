@@ -20,7 +20,7 @@
                 IsRunning="True" Grid.Column="0"
                 Color="White" Grid.Row="1"
                 Scale="1.4"/>
-            <Label Text="Chargement..." FontSize="Default" TextColor="White"
+            <Label Text="Cela ne devrait pas durer longtemps..." FontSize="Default" TextColor="White"
                    HorizontalTextAlignment="Center" Grid.Row="2" Margin="20"
                    VerticalOptions="Center"></Label>
         </Grid>
