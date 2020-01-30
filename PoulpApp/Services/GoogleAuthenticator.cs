@@ -1,10 +1,10 @@
-﻿using Newtonsoft.Json;
+﻿using Jose;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Net;
-using System.Net.NetworkInformation;
-using System.Runtime.CompilerServices;
+using System.Security.Cryptography;
 using System.Threading.Tasks;
 using Xamarin.Auth;
 using Xamarin.Essentials;
@@ -128,14 +128,14 @@ namespace PoulpApp.Services
                 var request = new OAuth2Request("GET", new Uri(Constants.UserInfoUrl), null, e.Account);
                 var response = await request.GetResponseAsync();
 
-                SecureStorage.Remove(Constants.serviceId);
+                SecureStorage.Remove(Constants.ServiceId);
 
                 if (response != null)
                 {
+                    await SecureStorage.SetAsync(Constants.ServiceId, e.Account.Serialize());
+
                     string userJson = await response.GetResponseTextAsync();
                     user = JsonConvert.DeserializeObject<User>(userJson);
-
-                    await SecureStorage.SetAsync(Constants.serviceId, e.Account.Serialize());
 
                     MessagingCenter.Send(MS, Constants.AuthenticationSuccess, user);
                 }
@@ -170,11 +170,12 @@ namespace PoulpApp.Services
         public static async Task<Response> AskUserInfoAsync(Account account)
         {
             var request = new OAuth2Request("GET", new Uri(Constants.UserInfoUrl), null, account);
+
             try
             {
                 return await request.GetResponseAsync();
             }
-            catch (Exception NetworkIssues)
+            catch (Exception) // TODO: Change exception type because very bad :)
             {
                 throw new NetworkIssuesException("No internet connection or permission issues, check network state");
             }
@@ -183,10 +184,11 @@ namespace PoulpApp.Services
         public async Task<User> VerifyAndGetUserAsync()
         {
             User user = null;
-            string serializedAccount = await SecureStorage.GetAsync(Constants.serviceId);
+            string serializedAccount = await SecureStorage.GetAsync(Constants.ServiceId);
 
             if (string.IsNullOrEmpty(serializedAccount))
             {
+                // TODO: Delete all user related info on disk at this point
                 throw new NoStoredUserException("No value for user in disk");
             }
             else
@@ -206,6 +208,14 @@ namespace PoulpApp.Services
         private async Task<User> GetUserAsync(Account account)
         {
             User user = null;
+            string idToken = account?.Properties["id_token"];
+
+            // TODO: compare id_token user id with stored session id
+            //if (!string.IsNullOrEmpty(idToken))
+            //{
+            //    var clientIDInfo = Base64Url.Decode(idToken);
+            //}
+
             var response1 = await AskUserInfoAsync(account);
 
             if (response1.StatusCode == HttpStatusCode.Unauthorized)

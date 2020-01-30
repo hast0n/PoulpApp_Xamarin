@@ -1,5 +1,7 @@
 ﻿using System;
+using PoulpApp.Models;
 using PoulpApp.Services;
+using PoulpApp.ViewModels;
 using PoulpApp.Views.Tools;
 using Rg.Plugins.Popup.Services;
 using Xamarin.Forms;
@@ -16,20 +18,19 @@ namespace PoulpApp.Views
         {
             InitializeComponent();
             BindingContext = viewModel = new CalabarPageViewModel();
-
-
         }
 
         async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
         {
-            //var item = args.SelectedItem as Item;
-            //if (item == null)
-            //    return;
+            var item = args.SelectedItem as Beer;
+            if (item == null)
+                return;
 
-            //await Navigation.PushAsync(new ItemDetailPage(new ItemDetailViewModel(item)));
+            await PopupNavigation.Instance.PushAsync(new BeerDetailPopupPage(new BeerDetailViewModel(item)));
+            //await Navigation.PushModalAsync(new BeerDetailPage(new BeerDetailViewModel(item)));
 
-            //// Manually deselect item.
-            //ItemsListView.SelectedItem = null;
+            // Manually deselect item.
+            BeerListView.SelectedItem = null;
         }
 
         async void AddItem_Clicked(object sender, EventArgs e)

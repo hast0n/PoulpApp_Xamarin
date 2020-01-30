@@ -20,6 +20,7 @@ namespace PoulpApp.Droid
             FormsControls.Droid.Main.Init(this);
             global::Xamarin.Essentials.Platform.Init(this, bundle);
             Rg.Plugins.Popup.Popup.Init(this, bundle);
+            FFImageLoading.Forms.Platform.CachedImageRenderer.Init(enableFastRenderer: true);
             global::Xamarin.Auth.Presenters.XamarinAndroid.AuthenticationConfiguration.Init(this, bundle);
             Xamarin.Auth.CustomTabsConfiguration.CustomTabsClosingMessage = null;
 

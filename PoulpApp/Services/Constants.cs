@@ -2,13 +2,16 @@
 {
     public static class Constants
     {
-        public static string serviceId = "GoogleAuthServices";
+        public static string ServiceId = "GOOGLE_AUTHENTICATOR";
+        public static string CurrentUser = "CURRENT_USER";
         public const string EventLaunchLoginPage = "EVENT_LAUNCH_LOGIN_PAGE";
         public const string EventLaunchMainPage = "EVENT_LAUNCH_MAIN_PAGE";
         public const string EventLaunchProfileView = "EVENT_LAUNCH_PROFILE_VIEW";
         public const string EventInformNetworkIssues = "EVENT_INFORM_NETWORK_ISSUES";
         public const string EventLogoutRequest = "LOGOUT_REQUEST";
         public const string AskLogoutCommandTriggered = "ASK_LOGOUT_COMMAND_TRIGGERED";
+        public const string AddCartItemEvent = "ADD_CART_ITEM_EVENT";
+        public const string RemoveCartItemEvent = "REMOVE_CART_ITEM_EVENT";
         public static string AuthenticationSuccess = "AUTHENTICATION_SUCCESS";
         public static string IsLoadingUser = "IS_LOADING_USER";
 

@@ -29,6 +29,7 @@ namespace PoulpApp.Views
                 await DisplayAlert("Oops...",
                     "Il semble que nous ne parvenons pas à joindre l'Internet ! Vérifiez votre connexion et réessayez.",
                     "Réessayer");
+
                 await VerifyAsyncCommand.ExecuteAsync();
             });
 
@@ -46,8 +47,16 @@ namespace PoulpApp.Views
                 IsBusy = true;
                 User user = await _GoogleAuth.VerifyAndGetUserAsync();
 
-                MessagingCenter.Send(new MessageService(), Constants.EventLaunchMainPage, user);
+                try
+                {
+
+                    MessagingCenter.Send(new MessageService(), Constants.EventLaunchMainPage, user);
                 }
+                catch (Exception e)
+                {
+
+                }
+            }
             catch (NoStoredUserException e)
             {
                 MessagingCenter.Send(new MessageService(), Constants.EventLaunchLoginPage);

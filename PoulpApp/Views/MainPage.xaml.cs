@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using BottomBar.XamarinForms;
+﻿using BottomBar.XamarinForms;
 using FormsControls.Base;
 using PoulpApp.Services;
 using PoulpApp.ViewModels;
+using System.ComponentModel;
 using Xamarin.Forms;
 
 namespace PoulpApp.Views
@@ -53,7 +48,6 @@ namespace PoulpApp.Views
             {
                 await Navigation.PushModalAsync(new ProfilePage(_viewModel));
             });
-
         }
     }
 }

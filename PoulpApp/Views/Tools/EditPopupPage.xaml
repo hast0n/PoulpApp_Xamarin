@@ -4,7 +4,7 @@
                  xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
                  xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
                  x:Class="PoulpApp.Views.Tools.EditPopupPage"
-                  BackgroundColor="Transparent">
+                 BackgroundColor="Transparent">
     <!--  You can set an animation in the xaml file or in the csharp code behind  -->
     <pages:PopupPage.Animation>
         <animations:FadeAnimation DurationIn="100"
@@ -14,8 +14,8 @@
                                    HasBackgroundAnimation="False"/>
     </pages:PopupPage.Animation>
     <!--  You can use any elements here which are extended from Xamarin.Forms.View  -->
-    <StackLayout Padding="5" HorizontalOptions="EndAndExpand" Margin="20, 50"
-                 VerticalOptions="StartAndExpand" BackgroundColor="Transparent">
+    <StackLayout Padding="5" HorizontalOptions="End" Margin="20, 50"
+                 VerticalOptions="Start" >
 
         <Frame Padding="0" CornerRadius="2">
             <StackLayout Padding="0">

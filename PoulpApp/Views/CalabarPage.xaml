@@ -5,6 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:poulpApp="clr-namespace:PoulpApp;assembly=PoulpApp"
              xmlns:models="clr-namespace:PoulpApp.Models;assembly=PoulpApp"
+             xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              mc:Ignorable="d" BackgroundColor="#EEEEEE"
              x:Class="PoulpApp.Views.CalabarPage">
     <ContentPage.ToolbarItems>
@@ -35,53 +36,58 @@
                     </StackLayout>
                 </Frame>
 
-                <ListView Grid.Row="1" Margin="0" Grid.ColumnSpan="3"
+                <!--Margin="{Binding , Source{x:Reference BottomBar}, Path:Height}"-->
+
+                <!--Pour le mode édition -> bouton edit sur chaque element de liste avec isVisible sur statut user-->
+
+                <ListView Grid.Row="1" Grid.ColumnSpan="3"
                           ItemsSource="{Binding BeerCollection}"
                           x:Name="BeerListView"
                           VerticalOptions="FillAndExpand"
                           RefreshCommand="{Binding LoadItemsCommand}"
                           IsPullToRefreshEnabled="true"
                           IsRefreshing="{Binding IsBusy, Mode=OneWay}"
-                          CachingStrategy="RecycleElementAndDataTemplate"
                           ItemSelected="OnItemSelected"
                           HasUnevenRows="True">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
-                                <Frame BackgroundColor="White" Margin="10, 5" CornerRadius="4" Padding="5" 
+                                <Frame BackgroundColor="White" Margin="10, 5" CornerRadius="10" Padding="0" 
                                        HorizontalOptions="FillAndExpand">
-                                    <Grid>
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition />
-                                            <RowDefinition />
-                                            <RowDefinition />
-                                            <RowDefinition />
-                                            <RowDefinition />
-                                            <RowDefinition />
-                                        </Grid.RowDefinitions>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="130"/>
-                                            <ColumnDefinition />
-                                            <ColumnDefinition />
-                                            <ColumnDefinition />
-                                            <ColumnDefinition />
-                                        </Grid.ColumnDefinitions>
-                                        <!--<Image Grid.Column="0" Grid.Row="0" Grid.RowSpan="6">
-                                            <Image.Source>
-                                                <UriImageSource 
-                                                    Uri="{Binding PosterPath}" 
-                                                    CachingEnabled="True"
-                                                    CacheValidity="5
-                                                    " />
-                                            </Image.Source>
-                                        </Image>-->
-                                        <Label Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="4" Text="{Binding Name}" TextColor="DimGray" FontAttributes="Bold" />
-                                        <Label Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="4" Text="{Binding Name}" TextColor="DimGray" FontAttributes="Bold" />
-                                        <Label Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="4" Text="{Binding Name}" TextColor="DimGray" FontAttributes="Bold" />
-                                        <Label Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="4" Text="{Binding Name}" TextColor="DimGray" FontAttributes="Bold" />
-                                        <Label Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="4" Text="{Binding Name}" TextColor="DimGray" FontAttributes="Bold" />
-                                        <Label Grid.Column="1" Grid.Row="5" Grid.ColumnSpan="4" Text="{Binding Name}" TextColor="DimGray" FontAttributes="Bold" />
-                                    </Grid>
+                                    <StackLayout>
+
+                                        <Frame Padding="15, 9" BackgroundColor="#992EA5">
+                                            <StackLayout Orientation="Horizontal">
+                                                <Label Text="{Binding Name}" TextColor="White" FontSize="19" FontAttributes="Bold" />
+                                                <Label Text="{Binding Color}" TextColor="White" VerticalOptions="Center" FontAttributes="Italic" Margin="15, 0"/>
+                                                <Label Text="Plus de détails" VerticalOptions="Center" HorizontalOptions="EndAndExpand" TextColor="White"></Label>
+                                            </StackLayout>
+                                        </Frame>
+
+                                        <StackLayout Orientation="Horizontal" >
+
+                                            <Frame BackgroundColor="Transparent" Padding="0" BorderColor="Transparent">
+                                                <forms:CachedImage DownsampleToViewSize="False" Source="{Binding PosterPath}" HeightRequest="100" WidthRequest="100"/>
+                                            </Frame>
+
+                                            <Grid HorizontalOptions="FillAndExpand">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition />
+                                                    <RowDefinition />
+                                                    <RowDefinition />
+                                                </Grid.RowDefinitions>
+
+                                                <Label Grid.Column="0" Grid.Row="0" Margin="0, 10" FontSize="15"
+                                                       Text="{Binding Quantity, StringFormat='Il en reste {0} en stock'}" 
+                                                       TextColor="DimGray" FontAttributes="Italic" />
+                                                <Label Grid.Row="1" FontSize="30" FontAttributes="Bold" Text="{Binding Price, StringFormat='{0:F2} €'}" />
+                                                <StackLayout Orientation="Horizontal" Padding="15, 0, 15, 10" Grid.Row="2" HorizontalOptions="EndAndExpand" VerticalOptions="EndAndExpand">
+                                                    <Label Text="{Binding Volume, StringFormat='{0}cl  -'}" FontSize="15"/>
+                                                    <Label Text="{Binding Degree, StringFormat='{0}%vol'}" FontSize="15"/>
+                                                </StackLayout>
+                                            </Grid>
+                                        </StackLayout>
+                                    </StackLayout>
                                 </Frame>
                             </ViewCell>
                         </DataTemplate>

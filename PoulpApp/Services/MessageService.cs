@@ -5,7 +5,7 @@ using Xamarin.Forms;
 
 namespace PoulpApp.Services
 {
-    class MessageService
+    public class MessageService
     {
         public void Subscribe<T>(string messageType, Action<T> action)
         {
